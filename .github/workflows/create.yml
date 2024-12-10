@@ -1,0 +1,25 @@
+name: Create build tools
+on: [push, workflow_dispatch]
+
+jobs:
+  create-tools-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Install homebrew for Apple silicon and Rosetta
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+      - name: Setup shell
+        run: |
+          alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
+          source scripts/brew-switch.zsh
+          source scripts/brow-switch.zsh
+
+      - name: Install python
+        run: |
+          brew-switch python@3.13 3.13.0_1
+          brow-switch python@3.13 3.13.0_1
