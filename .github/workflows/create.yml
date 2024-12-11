@@ -20,6 +20,7 @@ jobs:
           echo "alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'" >> ~/.zshrc
           echo "source scripts/brew-switch.zsh" >> ~/.zshrc
           echo "source scripts/brow-switch.zsh" >> ~/.zshrc
+          echo "export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1" >> ~/.zshrc
         shell: zsh {0}
 
       - name: Install python
