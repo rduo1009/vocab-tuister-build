@@ -82,7 +82,7 @@ function brew-switch {
   if brew ls --versions "$_formula" >/dev/null; then
     echo "INFO: Uninstalling '$_formula'"
     brew unpin "$_formula"
-    if ! brew uninstall "$_formula"; then
+    if ! brew uninstall --ignore-dependencies "$_formula"; then
       echo "ERROR: Failed to uninstall '$_formula'"
       return 1
     fi

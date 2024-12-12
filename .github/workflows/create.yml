@@ -28,4 +28,6 @@ jobs:
           source ~/.zshrc
           brew-switch python@3.13 3.13.0_1
           brow-switch python@3.13 3.13.0_1
+          brew link --overwrite python@3.13
+          brow link --overwrite python@3.13
         shell: zsh {0}

@@ -82,7 +82,7 @@ function brow-switch {
   if brow ls --versions "$_formula" >/dev/null; then
     echo "INFO: Uninstalling '$_formula'"
     brow unpin "$_formula"
-    if ! brow uninstall "$_formula"; then
+    if ! brow uninstall --ignore-dependencies "$_formula"; then
       echo "ERROR: Failed to uninstall '$_formula'"
       return 1
     fi
