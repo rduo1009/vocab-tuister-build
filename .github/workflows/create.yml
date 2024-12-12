@@ -31,3 +31,10 @@ jobs:
           brew link --overwrite python@3.13
           brow link --overwrite python@3.13
         shell: zsh {0}
+
+      - name: Verify python
+        run: |
+          source ~/.zshrc
+          /opt/homebrew/bin/python3 scripts/check_python.py
+          /usr/local/bin/python3 scripts/check_python.py
+        shell: zsh {0}
