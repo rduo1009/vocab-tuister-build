@@ -80,19 +80,10 @@ function brew-switch {
 
   # if the formula is already installed, uninstall it
   if brew ls --versions "$_formula" >/dev/null; then
-    echo ""
-    echo "WARNING: '$_formula' already installed, do you want to uninstall it? [y/N]"
-    local _reply=$(bash -c "read -n 1 -r && echo \$REPLY")
-    echo ""
-    if [[ $_reply =~ ^[Yy]$ ]]; then
-      echo "INFO: Uninstalling '$_formula'"
-      brew unpin "$_formula"
-      if ! brew uninstall "$_formula"; then
-        echo "ERROR: Failed to uninstall '$_formula'"
-        return 1
-      fi
-    else
-      echo "ERROR: '$_formula' is already installed, aborting"
+    echo "INFO: Uninstalling '$_formula'"
+    brew unpin "$_formula"
+    if ! brew uninstall "$_formula"; then
+      echo "ERROR: Failed to uninstall '$_formula'"
       return 1
     fi
   fi
