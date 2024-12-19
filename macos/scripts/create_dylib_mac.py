@@ -14,7 +14,7 @@ PYTHON_VERSION_LONG = os.environ["PYTHON_VERSION_LONG"]
 BREW_PYTHON_FORMULA = os.environ["BREW_PYTHON_FORMULA"]
 
 # fmt: off
-DYLIBS = ((BREW_PYTHON_FORMULA, f"libpython{PYTHON_VERSION_SHORT}"), ("gettext", "libintl.8"), ("xz", "liblzma.5"), ("mpdecimal", "libmpdec.4"), ("openssl@3", "libcrypto.3"), ("libb2", "libb2.1"), ("openssl@3", "libssl.3"), ("ncurses", "libncursesw.6"), ("readline", "libreadline.8"), ("lz4", "liblz4.1"), ("sqlite3", "libsqlite3.0"))
+DYLIBS = ((BREW_PYTHON_FORMULA, f"libpython{PYTHON_VERSION_SHORT}"), ("gettext", "libintl.8"), ("xz", "liblzma.5"), ("mpdecimal", "libmpdec.4"), ("openssl@3", "libcrypto.3"), ("libb2", "libb2.1"), ("openssl@3", "libssl.3"), ("ncurses", "libncursesw.6"), ("readline", "libreadline.8"), ("lz4", "liblz4.1"), ("sqlite", "libsqlite3.0"))
 # fmt: on
 
 for dylib in DYLIBS:

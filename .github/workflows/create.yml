@@ -15,27 +15,23 @@ jobs:
           arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         shell: zsh {0}
 
-      - name: Setup zshrc
+      - name: Setup shell
         run: |
           echo "alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'" >> ~/.zshrc
           echo "source macos/scripts/brew-switch.zsh" >> ~/.zshrc
           echo "source macos/scripts/brow-switch.zsh" >> ~/.zshrc
           echo "export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1" >> ~/.zshrc
           echo "set -o allexport" >> ~/.zshrc
+          echo "source macos/.env" >> ~/.zshrc
         shell: zsh {0}
-
-      - name: Set environment variables
-        run: |
-          source ~/.zshrc
-          export macos/.env
 
       - name: Install python
         run: |
           source ~/.zshrc
-          brew-switch $BREW_PYTHON_NAME $BREW_PYTHON_VERSION
-          brow-switch $BREW_PYTHON_NAME $BREW_PYTHON_VERSION
-          brew link --overwrite $BREW_PYTHON_NAME
-          brow link --overwrite $BREW_PYTHON_NAME
+          brew-switch $BREW_PYTHON_FORMULA $BREW_PYTHON_VERSION
+          brow-switch $BREW_PYTHON_FORMULA $BREW_PYTHON_VERSION
+          brew link --overwrite $BREW_PYTHON_FORMULA
+          brow link --overwrite $BREW_PYTHON_FORMULA
         shell: zsh {0}
 
       - name: Verify python
@@ -47,10 +43,15 @@ jobs:
 
       - name: Install deps needed to build tools
         run: |
-          brew install pipx
+          source ~/.zshrc
+          brew install libb2 ncurses
+          brow install gettext lz4 libb2 ncurses
           pipx install delocate wheel
+        shell: zsh {0}
 
       - name: Create build tools
         run: |
+          source ~/.zshrc
           python3 macos/scripts/create_stdlib_mac.py
           python3 macos/scripts/create_dylib_mac.py
+        shell: zsh {0}
