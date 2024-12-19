@@ -35,6 +35,15 @@ jobs:
       - name: Verify python
         run: |
           source ~/.zshrc
-          /opt/homebrew/bin/python3 scripts/check_python.py
-          /usr/local/bin/python3 scripts/check_python.py
+          /opt/homebrew/bin/python3 scripts/check_python_mac.py
+          /usr/local/bin/python3 scripts/check_python_mac.py
         shell: zsh {0}
+
+      - name: Install tools
+        run: |
+          brew install pipx
+          pipx install delocate wheel
+
+      - name: Create Python standard library universal binaries
+        run: |
+          python3 scripts/create_stdlib_mac.py
