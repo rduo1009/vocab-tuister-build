@@ -47,11 +47,12 @@ jobs:
           brew install libb2 ncurses
           brow install gettext lz4 libb2 ncurses
           pipx install delocate wheel
+          /opt/homebrew/bin/python3 -m pip install python-dotenv --break-system-packages
         shell: zsh {0}
 
       - name: Create build tools
         run: |
           source ~/.zshrc
-          python3 macos/scripts/create_stdlib_mac.py
-          python3 macos/scripts/create_dylib_mac.py
+          /opt/homebrew/bin/python3 macos/scripts/create_stdlib_mac.py
+          /opt/homebrew/bin/python3 macos/scripts/create_dylib_mac.py
         shell: zsh {0}

@@ -1,6 +1,11 @@
 import os
 import subprocess
 import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent / "macos" / ".env")
 
 if sys.platform != "darwin":
     raise ValueError(
@@ -28,7 +33,7 @@ for dylib in DYLIBS:
             "/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/"
             "Versions/3.13/lib/libpython3.13.dylib"
         )
-        x66_dylib = (
+        x86_dylib = (
             "/usr/local/opt/python@3.13/Frameworks/Python.framework/"
             "Versions/3.13/lib/libpython3.13.dylib"
         )
