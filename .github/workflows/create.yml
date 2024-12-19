@@ -18,8 +18,8 @@ jobs:
       - name: Setup shell
         run: |
           echo "alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'" >> ~/.zshrc
-          echo "source scripts/brew-switch.zsh" >> ~/.zshrc
-          echo "source scripts/brow-switch.zsh" >> ~/.zshrc
+          echo "source macos/scripts/brew-switch.zsh" >> ~/.zshrc
+          echo "source macos/scripts/brow-switch.zsh" >> ~/.zshrc
           echo "export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1" >> ~/.zshrc
         shell: zsh {0}
 
@@ -35,8 +35,8 @@ jobs:
       - name: Verify python
         run: |
           source ~/.zshrc
-          /opt/homebrew/bin/python3 scripts/check_python_mac.py
-          /usr/local/bin/python3 scripts/check_python_mac.py
+          /opt/homebrew/bin/python3 macos/scripts/check_python_mac.py
+          /usr/local/bin/python3 macos/scripts/check_python_mac.py
         shell: zsh {0}
 
       - name: Install tools
@@ -46,4 +46,4 @@ jobs:
 
       - name: Create Python standard library universal binaries
         run: |
-          python3 scripts/create_stdlib_mac.py
+          python3 macos/scripts/create_stdlib_mac.py
