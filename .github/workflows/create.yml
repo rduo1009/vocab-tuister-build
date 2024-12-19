@@ -15,21 +15,27 @@ jobs:
           arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         shell: zsh {0}
 
-      - name: Setup shell
+      - name: Setup zshrc
         run: |
           echo "alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'" >> ~/.zshrc
           echo "source macos/scripts/brew-switch.zsh" >> ~/.zshrc
           echo "source macos/scripts/brow-switch.zsh" >> ~/.zshrc
           echo "export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1" >> ~/.zshrc
+          echo "set -o allexport" >> ~/.zshrc
         shell: zsh {0}
+
+      - name: Set environment variables
+        run: |
+          source ~/.zshrc
+          export macos/.env
 
       - name: Install python
         run: |
           source ~/.zshrc
-          brew-switch python@3.13 3.13.0_1
-          brow-switch python@3.13 3.13.0_1
-          brew link --overwrite python@3.13
-          brow link --overwrite python@3.13
+          brew-switch $BREW_PYTHON_NAME $BREW_PYTHON_VERSION
+          brow-switch $BREW_PYTHON_NAME $BREW_PYTHON_VERSION
+          brew link --overwrite $BREW_PYTHON_NAME
+          brow link --overwrite $BREW_PYTHON_NAME
         shell: zsh {0}
 
       - name: Verify python
@@ -39,11 +45,11 @@ jobs:
           /usr/local/bin/python3 macos/scripts/check_python_mac.py
         shell: zsh {0}
 
-      - name: Install tools
+      - name: Install deps needed to build tools
         run: |
           brew install pipx
           pipx install delocate wheel
 
-      - name: Create Python standard library universal binaries
+      - name: Create build tools
         run: |
           python3 macos/scripts/create_stdlib_mac.py
