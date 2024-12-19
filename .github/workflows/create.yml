@@ -53,3 +53,4 @@ jobs:
       - name: Create build tools
         run: |
           python3 macos/scripts/create_stdlib_mac.py
+          python3 macos/scripts/create_dylib_mac.py

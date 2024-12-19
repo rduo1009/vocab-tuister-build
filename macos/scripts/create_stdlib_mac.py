@@ -52,5 +52,6 @@ for extension in STDLIB_EXTENSIONS:
     )
     if not ("x86_64" in check_arch.stdout and "arm64" in check_arch.stdout):
         raise ValueError(
-            f"The created extension {extension} is not universal (got arch {check_arch.stdout})."
+            f"The created extension {extension} is not universal "
+            f"(got arch {check_arch.stdout})."
         )
