@@ -26,3 +26,14 @@ for extension in STDLIB_EXTENSIONS:
         ],
         check=True,
     )
+
+    check_arch = subprocess.run(
+        ["/usr/bin/lipo", "-archs", output_binary],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    if not ("x86_64" in check_arch.stdout and "arm64" in check_arch.stdout):
+        raise ValueError(
+            f"The created extension {extension} is not universal (got arch {check_arch.stdout})."
+        )
