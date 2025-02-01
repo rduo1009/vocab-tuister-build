@@ -74,3 +74,5 @@ jobs:
           git commit -m "🔨 refactor: generate build tools"
           git push origin update-build-tools
           gh pr create --base master --head update-build-tools --title "🔨 refactor: generate build tools"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
