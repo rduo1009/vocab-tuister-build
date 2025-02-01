@@ -55,5 +55,5 @@ jobs:
           source ~/.zshrc
           /opt/homebrew/bin/python3 macos/scripts/create_stdlib_mac.py
           /opt/homebrew/bin/python3 macos/scripts/create_dylib_mac.py
-          /opt/homebrew/bin/python3 macos/scripts/create_wheels_mac.py
+          ./macos/scripts/create-wheels-mac.zsh
         shell: zsh {0}
