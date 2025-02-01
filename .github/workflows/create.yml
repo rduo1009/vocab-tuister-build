@@ -1,5 +1,5 @@
 name: Create build tools
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 permissions:
   contents: write
