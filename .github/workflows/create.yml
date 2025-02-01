@@ -1,6 +1,10 @@
 name: Create build tools
 on: [push, workflow_dispatch]
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   create-tools-macos:
     name: Create build tools for macOS
