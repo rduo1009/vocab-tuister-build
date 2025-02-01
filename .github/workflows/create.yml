@@ -25,6 +25,10 @@ jobs:
           echo "source macos/.env" >> ~/.zshrc
         shell: zsh {0}
 
+      - name: Create new branch
+        run: |
+          git checkout -b update-build-tools
+
       - name: Install python
         run: |
           source ~/.zshrc
@@ -64,4 +68,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "🔨 refactor: generate build tools"
-          git push
+          git push origin update-build-tools
+          gh pr create --base master --head update-build-tools --title "🔨 refactor: generate build tools"
