@@ -10,10 +10,8 @@ lipo -create first.so second.so -output combined.so
 lipo -create first.dylib second.dylib -output combined.dylib
 ```
 
-- The lz4 wheel was created using delocate.
+- The lz4 and numpy wheels were created using delocate.
 
 ```bash
 delocate-merge first.whl second.whl
 ```
-
-- Numpy wheels cannot be merged by delocate at the moment, so I merged them manually.
