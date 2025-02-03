@@ -22,8 +22,8 @@ jobs:
       - name: Setup shell
         run: |
           echo "alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'" >> ~/.zshrc
-          echo "source macos/scripts/brew-switch.zsh" >> ~/.zshrc
-          echo "source macos/scripts/brow-switch.zsh" >> ~/.zshrc
+          echo "source macos/scripts/brew-switch.sh" >> ~/.zshrc
+          echo "source macos/scripts/brow-switch.sh" >> ~/.zshrc
           echo "export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1" >> ~/.zshrc
           echo "set -o allexport" >> ~/.zshrc
           echo "source macos/.env" >> ~/.zshrc
@@ -64,7 +64,7 @@ jobs:
           source ~/.zshrc
           /opt/homebrew/bin/python3 macos/scripts/create_stdlib_mac.py
           /opt/homebrew/bin/python3 macos/scripts/create_dylib_mac.py
-          ./macos/scripts/create-wheels-mac.zsh
+          ./macos/scripts/create-wheels-mac.sh
         shell: zsh {0}
 
       - name: Commit build tools
