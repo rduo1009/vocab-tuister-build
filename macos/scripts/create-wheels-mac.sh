@@ -19,6 +19,13 @@ arm64_wheel=$(basename "$LZ4_WHEEL_ARM_URL")
 
 delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
 
+{
+    echo "$arm64_wheel   $(shasum -a 256 "$arm64_wheel")"
+    echo "$x86_64_wheel    $(shasum -a 256 "$x86_64_wheel")"
+    # echo "$output_wheel    $(shasum -a 256 "$output_wheel")"
+    echo ""
+} >> logs/
+
 rm "$x86_64_wheel" "$arm64_wheel"
 
 # numpy wheel
@@ -29,5 +36,12 @@ x86_64_wheel=$(basename "$NUMPY_WHEEL_X86_URL")
 arm64_wheel=$(basename "$NUMPY_WHEEL_ARM_URL")
 
 delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
+
+{
+    echo "$arm64_wheel    $(shasum -a 256 "$arm64_wheel")"
+    echo "$x86_64_wheel    $(shasum -a 256 "$x86_64_wheel")"
+    # echo "$output_wheel    $(shasum -a 256 "$output_wheel")"
+    echo ""
+} >> "$log_file_path"
 
 rm "$x86_64_wheel" "$arm64_wheel"

@@ -33,6 +33,8 @@ jobs:
         run: |
           git checkout -b update-build-tools
           git fetch origin
+          mkdir -p logs
+          rm -f logs/macos.log
 
       - name: Install python
         run: |

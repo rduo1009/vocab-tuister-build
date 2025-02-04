@@ -1,3 +1,4 @@
+import hashlib
 import os
 import subprocess
 import sys
@@ -5,7 +6,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent / "macos" / ".env")
+load_dotenv(Path(__file__).parent / ".env")
+log_file_path = Path(__file__).parent / "logs" / "macos.log"
 
 if sys.platform != "darwin":
     raise ValueError(
@@ -21,6 +23,12 @@ BREW_PYTHON_FORMULA = os.environ["BREW_PYTHON_FORMULA"]
 # fmt: off
 DYLIBS = ((BREW_PYTHON_FORMULA, f"libpython{PYTHON_VERSION_SHORT}"), ("gettext", "libintl.8"), ("xz", "liblzma.5"), ("mpdecimal", "libmpdec.4"), ("openssl@3", "libcrypto.3"), ("libb2", "libb2.1"), ("openssl@3", "libssl.3"), ("ncurses", "libncursesw.6"), ("readline", "libreadline.8"), ("lz4", "liblz4.1"), ("sqlite", "libsqlite3.0"))
 # fmt: on
+
+
+def _sha256sum(filename):
+    with open(filename, "rb", buffering=0) as f:
+        return hashlib.file_digest(f, "sha256").hexdigest()
+
 
 for dylib in DYLIBS:
     formula = dylib[0]
@@ -67,3 +75,9 @@ for dylib in DYLIBS:
             f"The created dynamic library {filename} is not universal "
             f"(got arch {check_arch.stdout})."
         )
+
+    with open(log_file_path, mode="a") as log_file:
+        log_file.write(f"{arm64_dylib}    {_sha256sum(arm64_dylib)}")
+        log_file.write(f"{x86_dylib}    {_sha256sum(x86_dylib)}")
+        log_file.write(f"{output_dylib}    {_sha256sum(output_dylib)}")
+        log_file.write("\n")
