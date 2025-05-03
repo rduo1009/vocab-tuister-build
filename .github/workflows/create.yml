@@ -54,7 +54,7 @@ jobs:
         run: |
           source ~/.zshrc
           brew install libb2 ncurses
-          brow install gettext lz4 libb2 ncurses
+          brow install gettext lz4 libb2 ncurses xz mpdecimal sqlite
           pipx install delocate wheel
           /opt/homebrew/bin/python3 -m pip install python-dotenv --break-system-packages
         shell: zsh {0}
