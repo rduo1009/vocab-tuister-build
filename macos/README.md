@@ -3,10 +3,11 @@
 These are needed because fat (multi-arch) binaries are needed to create a universal macOS
 binary.
 
-- Standard library modules and dynamic libraries are created from an x84_64 binary and an arm64 binary.
+- The standard library modules and some dynamic libraries are taken from the Python installer pkg.
+
+- The remaining dynamic libraries are created from an x84_64 binary and an arm64 binary (installed by homebrew).
 
 ```bash
-lipo -create first.so second.so -output combined.so
 lipo -create first.dylib second.dylib -output combined.dylib
 ```
 
