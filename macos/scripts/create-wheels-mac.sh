@@ -24,7 +24,7 @@ delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
     echo "$x86_64_wheel    $(shasum -a 256 "$x86_64_wheel")"
     # echo "$output_wheel    $(shasum -a 256 "$output_wheel")"
     echo ""
-} >> logs/
+} >> logs/macos.log
 
 rm "$x86_64_wheel" "$arm64_wheel"
 
@@ -42,6 +42,6 @@ delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
     echo "$x86_64_wheel    $(shasum -a 256 "$x86_64_wheel")"
     # echo "$output_wheel    $(shasum -a 256 "$output_wheel")"
     echo ""
-} >> "$log_file_path"
+} >> logs/macos.log
 
 rm "$x86_64_wheel" "$arm64_wheel"

@@ -44,6 +44,8 @@ jobs:
           brew link --overwrite $BREW_PYTHON_FORMULA
           brow link --overwrite $BREW_PYTHON_FORMULA
         shell: zsh {0}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Verify python
         run: |
@@ -76,6 +78,6 @@ jobs:
           git add .
           git commit -m "🔨 refactor: generate build tools" || exit 0
           git push origin update-build-tools --force
-          gh pr create --base master --head update-build-tools --title "🔨 refactor: generate build tools"
+          gh pr create --base master --head update-build-tools --title "🔨 refactor: generate build tools" --fill
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

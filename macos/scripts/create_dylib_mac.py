@@ -7,7 +7,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")
-log_file_path = Path(__file__).parent / "logs" / "macos.log"
+log_file_path = Path(__file__).parent.parent / "logs" / "macos.log"
 
 if sys.platform != "darwin":
     raise ValueError(

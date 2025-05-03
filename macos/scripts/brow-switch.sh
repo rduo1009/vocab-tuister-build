@@ -34,14 +34,8 @@ function brow-switch {
 
   # fail if no commit was found
   if [[ -z "$_commit_url" ]]; then
-    if [[ "${_formula}" == "python@3.13" ]]; then
-      _version="3.13.0_1"
-      _commit_url="https://github.com/Homebrew/homebrew-core/commit/80bfed858ac941b33c64ef46f7d65891b71ca368"
-      echo "INFO: Found commit ${_commit_url} for ${_formula}@${_version}"
-    else
-      echo "ERROR: No commit found for ${_formula}@${_version}"
-      return 1
-    fi
+    echo "ERROR: No commit found for ${_formula}@${_version}"
+    return 1
   else
     echo "INFO: Found commit ${_commit_url} for ${_formula}@${_version}"
   fi

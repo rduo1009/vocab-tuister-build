@@ -6,9 +6,9 @@ if sys.platform != "darwin":
         f"This script should only be run on macOS (got {sys.platform})"
     )
 
-if sys.version_info != (3, 13, 0, "final", 0):  # Python version 3.13.0
+if sys.version_info != (3, 13, 1, "final", 0):  # Python version 3.13.1
     raise ValueError(
-        f"Python version is not 3.13.0 (got version {sys.version_info})"
+        f"Python version is not 3.13.1 (got version {sys.version_info})"
     )
 
 if sys.executable == "/opt/homebrew/opt/python@3.13/bin/python3.13":
