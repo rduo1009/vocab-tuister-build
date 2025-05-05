@@ -61,3 +61,6 @@ for extension in STDLIB_EXTENSIONS:
     with open(log_file_path, mode="a") as log_file:
         log_file.write(f"{os.path.basename(output_binary)}    {_sha256sum(output_binary)}")
         log_file.write("\n")
+
+with open(log_file_path, mode="a") as log_file:
+    log_file.write("\n")

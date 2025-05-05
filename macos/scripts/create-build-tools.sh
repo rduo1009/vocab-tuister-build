@@ -9,9 +9,12 @@ set -e
 
 export $(cat macos/.env | xargs)
 
+rm -rf logs
+mkdir -p logs
+
 curl -L "$PYTHON_PKG_UNIVERSAL_URL" -o python-pkg.pkg
 pkgutil --expand python-pkg.pkg python-expanded-pkg
-gunzip -c python-expanded-pkg/Python_Framework.pkg/Payload | cpio -idum
+
 mkdir -p python-pkg-framework
 (cd python-pkg-framework && gunzip -c ../python-expanded-pkg/Python_Framework.pkg/Payload | cpio -idum)
 

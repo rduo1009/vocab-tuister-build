@@ -43,6 +43,9 @@ for dylib in PYTHON_DYLIBS:
         log_file.write(f"{os.path.basename(output_dylib)}    {_sha256sum(output_dylib)}")
         log_file.write("\n")
 
+with open(log_file_path, mode="a") as log_file:
+    log_file.write("\n")
+
 for dylib in HOMEBREW_DYLIBS:
     formula = dylib[0]
     filename = dylib[1]
@@ -75,7 +78,7 @@ for dylib in HOMEBREW_DYLIBS:
         )
 
     with open(log_file_path, mode="a") as log_file:
-        log_file.write(f"{os.path.basename(arm64_dylib)}    {_sha256sum(arm64_dylib)}")
-        log_file.write(f"{os.path.basename(x86_dylib)}    {_sha256sum(x86_dylib)}")
-        log_file.write(f"{os.path.basename(output_dylib)}    {_sha256sum(output_dylib)}")
+        log_file.write(f"{os.path.basename(arm64_dylib)} (arm64)    {_sha256sum(arm64_dylib)}\n")
+        log_file.write(f"{os.path.basename(x86_dylib)} (x86_64)    {_sha256sum(x86_dylib)}\n")
+        log_file.write(f"{os.path.basename(output_dylib)} (universal2)    {_sha256sum(output_dylib)}\n")
         log_file.write("\n")

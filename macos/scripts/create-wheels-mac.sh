@@ -26,9 +26,9 @@ delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
 output_wheel=(macos/wheels/*.whl) 
 
 {
-  echo "$arm64_wheel   $(shasum -a 256 "$arm64_wheel")"
-  echo "$x86_64_wheel    $(shasum -a 256 "$x86_64_wheel")"
-  echo "${output_wheel:t}    $(shasum -a 256 "$output_wheel")"
+  echo "${arm64_wheel:t}   $(shasum -a 256 "$arm64_wheel" | awk '{ print $1 }')"
+  echo "${x86_64_wheel:t}    $(shasum -a 256 "$x86_64_wheel" | awk '{ print $1 }')"
+  echo "${output_wheel:t}    $(shasum -a 256 "$output_wheel" | awk '{ print $1 }')"
   echo ""
 } >> logs/macos.log
 
@@ -52,9 +52,9 @@ for w in $wheels; do
 done
 
 {
-  echo "$arm64_wheel    $(shasum -a 256 "$arm64_wheel")"
-  echo "$x86_64_wheel    $(shasum -a 256 "$x86_64_wheel")"
-  echo "${output_wheel:t}    $(shasum -a 256 "$output_wheel")"
+  echo "${arm64_wheel:t}    $(shasum -a 256 "$arm64_wheel" | awk '{ print $1 }')"
+  echo "${x86_64_wheel:t}    $(shasum -a 256 "$x86_64_wheel" | awk '{ print $1 }')"
+  echo "${output_wheel:t}    $(shasum -a 256 "$output_wheel" | awk '{ print $1 }')"
   echo ""
 } >> logs/macos.log
 
