@@ -23,7 +23,6 @@ jobs:
         run: |
           echo "alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'" >> ~/.zshrc
           echo "source macos/scripts/brew-switch.sh" >> ~/.zshrc
-          echo "source macos/scripts/brow-switch.sh" >> ~/.zshrc
           echo "export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1" >> ~/.zshrc
           echo "set -o allexport" >> ~/.zshrc
           echo "source macos/.env" >> ~/.zshrc
@@ -40,9 +39,7 @@ jobs:
         run: |
           source ~/.zshrc
           brew-switch $BREW_PYTHON_FORMULA $BREW_PYTHON_VERSION
-          brow-switch $BREW_PYTHON_FORMULA $BREW_PYTHON_VERSION
           brew link --overwrite $BREW_PYTHON_FORMULA
-          brow link --overwrite $BREW_PYTHON_FORMULA
         shell: zsh {0}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,15 +47,14 @@ jobs:
       - name: Verify python
         run: |
           source ~/.zshrc
-          /opt/homebrew/bin/python3 macos/scripts/check_python_mac.py
-          /usr/local/bin/python3 macos/scripts/check_python_mac.py
+          ./macos/scripts/check_python_mac.py
         shell: zsh {0}
 
       - name: Install deps needed to build tools
         run: |
           source ~/.zshrc
           brew install libb2 ncurses
-          brow install gettext lz4 libb2 ncurses
+          brow install gettext lz4 libb2 ncurses xz mpdecimal sqlite
           pipx install delocate wheel
           /opt/homebrew/bin/python3 -m pip install python-dotenv --break-system-packages
         shell: zsh {0}
@@ -66,16 +62,14 @@ jobs:
       - name: Create build tools
         run: |
           source ~/.zshrc
-          /opt/homebrew/bin/python3 macos/scripts/create_stdlib_mac.py
-          /opt/homebrew/bin/python3 macos/scripts/create_dylib_mac.py
-          ./macos/scripts/create-wheels-mac.sh
+          ./macos/scripts/create-build-tools.sh
         shell: zsh {0}
 
       - name: Commit build tools
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
+          git add ./macos ./logs
           git commit -m "🔨 refactor: generate build tools" || exit 0
           git push origin update-build-tools --force
           gh pr create --base master --head update-build-tools --title "🔨 refactor: generate build tools" --fill
