@@ -1,4 +1,4 @@
-name: Create build tools
+name: Create build resources
 on: [workflow_dispatch]
 
 permissions:
@@ -6,8 +6,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  create-tools-macos:
-    name: Create build tools for macOS
+  create-resources-macos:
+    name: Create build resources for macOS
     runs-on: macos-latest
 
     steps:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Create new branch
         run: |
-          git checkout -b update-build-tools
+          git checkout -b update-build-resources
           git fetch origin
 
       - name: Install python
@@ -48,7 +48,7 @@ jobs:
           ./macos/scripts/check_python_mac.py
         shell: zsh {0}
 
-      - name: Install deps needed to build tools
+      - name: Install deps needed to build resources
         run: |
           source ~/.zshrc
           brew install libb2 ncurses
@@ -57,19 +57,19 @@ jobs:
           /opt/homebrew/bin/python3 -m pip install python-dotenv --break-system-packages
         shell: zsh {0}
 
-      - name: Create build tools
+      - name: Create build resources
         run: |
           source ~/.zshrc
-          ./macos/scripts/create-build-tools.sh
+          ./macos/scripts/create-build-resources.sh
         shell: zsh {0}
 
-      - name: Commit build tools
+      - name: Commit build resources
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ./macos ./logs
-          git commit -m "🔨 refactor: generate build tools" || exit 0
-          git push origin update-build-tools --force
-          gh pr create --base main --head update-build-tools --title "🔨 refactor: generate build tools" --fill
+          git commit -m "🔨 refactor: generate build resources" || exit 0
+          git push origin update-build-resources --force
+          gh pr create --base main --head update-build-resources --title "🔨 refactor: generate build resources" --fill
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
