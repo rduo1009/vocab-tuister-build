@@ -70,6 +70,6 @@ jobs:
           git add ./macos ./logs
           git commit -m "🔨 refactor: generate build tools" || exit 0
           git push origin update-build-tools --force
-          gh pr create --base master --head update-build-tools --title "🔨 refactor: generate build tools" --fill
+          gh pr create --base main --head update-build-tools --title "🔨 refactor: generate build tools" --fill
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
