@@ -1,4 +1,4 @@
-# Build tools for macOS
+# Build resources for macOS
 
 These are needed because fat (multi-arch) binaries are needed to create a universal macOS
 binary.
