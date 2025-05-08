@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# ruff: noqa: D100, PYI006
+
 import platform
 import sys
 
