@@ -59,9 +59,9 @@ libssl.3.dylib    d251ac9d0f1efea3293885539ed66bf22ebcd360939077e9d37bc00523b624
 libcrypto.3.dylib    031c5a65a37412d44c295a9debd93234c5e8a34b6ea385584430b50e3e71cc58
 libncursesw.5.dylib    b20581c7fc924152ffb16c2465257eb4927706e4e8031a97ec35ebd7d98a1b6c
 
-libintl.8.dylib (arm64)    00ec403e78bd348598edbeabc53344740d0937e14ef4e15cf60ed3eb5ea12a0e
+libintl.8.dylib (arm64)    a14c22e4826fafc540e79298e599270b009cc8e2f5c54af732761c7f80becdee
 libintl.8.dylib (x86_64)    526227b3e7abd92c9bae91231e6d46a03a1b0668baa7efd1e3d9975e6286c845
-libintl.8.dylib (universal2)    3667d897de59dd479b87e583aeb1c805b9689d43bc03362c83668733b8457caf
+libintl.8.dylib (universal2)    8de5c520cfe37f8fde390d6d29af1e08abf6aa6ccd5a3f89278cfd0f99f8a942
 
 liblzma.5.dylib (arm64)    deea295745d251cb14b2978a6b6c4b65e4fbc79ca09f96fd2333a7e6f42219c5
 liblzma.5.dylib (x86_64)    58c51d56d523511036baa6a658c0697500a151818b25faa747d867eadbecbfc7
@@ -89,9 +89,9 @@ libsqlite3.0.dylib (universal2)    fe5da83d884cd473538328c374923982813d98548fabe
 
 lz4-4.4.3-cp313-cp313-macosx_11_0_arm64.whl   ab26b4af13308b8296688b03d74c3b0c8e8ed1f6b2d1454ef97bdb589db409db
 lz4-4.4.3-cp313-cp313-macosx_10_13_x86_64.whl    174b7ce5456671c73b81bb115defac8a584363d8b38a48ed3ad976e08eea27cd
-lz4-4.4.3-cp313-cp313-macosx_10_13_universal2.whl    53ace1c846b0eaaf0aee42f8f015108b2e7feb287bdad12e1c3ed4239feb4a70
+lz4-4.4.3-cp313-cp313-macosx_10_13_universal2.whl    9526db5781185cdc91fad50ae486623ddeacbf873c8dcff5d0f21608dd7ce0bc
 
 numpy-2.2.1-cp313-cp313-macosx_11_0_arm64.whl    3ecc47cd7f6ea0336042be87d9e7da378e5c7e9b3c8ad0f7c966f714fc10d821
 numpy-2.2.1-cp313-cp313-macosx_10_13_x86_64.whl    f1d09e520217618e76396377c81fba6f290d5f926f50c35f3a5f72b01a0da780
-numpy-2.2.1-cp313-cp313-macosx_10_13_universal2.whl    d9f44ab681f5c754fd7204743e037b3a6ed3e9c4ddc7d96edc6492dbba192fbf
+numpy-2.2.1-cp313-cp313-macosx_10_13_universal2.whl    98c1fec17073c94c62d8e5acda744001c93ae6448dbc2e32f893cbc7b7b8912b
 
