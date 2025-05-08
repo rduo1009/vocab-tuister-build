@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
+# ruff: noqa: S404, ANN202, S603, D100
+
 import hashlib
-import os
 import subprocess
-import sys
 from pathlib import Path
 
 log_file_path = Path(__file__).parent.parent.parent / "logs" / "macos.log"
@@ -14,19 +14,18 @@ HOMEBREW_DYLIBS = ((("gettext", "libintl.8"), ("xz", "liblzma.5"), ("mpdecimal",
 # fmt: on
 
 
-def _sha256sum(filename):
-    with open(filename, "rb", buffering=0) as f:
+def _sha256sum(filename: Path):
+    with filename.open("rb", buffering=0) as f:
         return hashlib.file_digest(f, "sha256").hexdigest()
 
+
 for dylib in PYTHON_DYLIBS:
-    original_dylib = (
+    original_dylib = Path(
         f"python-pkg-framework/Versions/Current/lib/{dylib}.dylib"
     )
-    output_dylib = (
-        f"macos/dylib/{dylib}.dylib"
-    )
+    output_dylib = Path(f"macos/dylib/{dylib}.dylib")
 
-    subprocess.run(["cp", original_dylib, output_dylib])
+    subprocess.run(["/bin/cp", original_dylib, output_dylib], check=True)
 
     check_arch = subprocess.run(
         ["/usr/bin/lipo", "-archs", output_dylib],
@@ -36,23 +35,23 @@ for dylib in PYTHON_DYLIBS:
     )
     if not ("x86_64" in check_arch.stdout and "arm64" in check_arch.stdout):
         raise ValueError(
-            f"Dylib {filename} is not universal (got {check_arch.stdout})."
+            f"Dylib {output_dylib} is not universal (got {check_arch.stdout})."
         )
 
-    with open(log_file_path, mode="a") as log_file:
-        log_file.write(f"{os.path.basename(output_dylib)}    {_sha256sum(output_dylib)}")
+    with log_file_path.open(mode="a") as log_file:
+        log_file.write(f"{output_dylib.name}    {_sha256sum(output_dylib)}")
         log_file.write("\n")
 
-with open(log_file_path, mode="a") as log_file:
+with log_file_path.open(mode="a") as log_file:
     log_file.write("\n")
 
 for dylib in HOMEBREW_DYLIBS:
     formula = dylib[0]
     filename = dylib[1]
 
-    arm64_dylib = f"/opt/homebrew/opt/{formula}/lib/{filename}.dylib"
-    x86_dylib = f"/usr/local/opt/{formula}/lib/{filename}.dylib"
-    output_dylib = f"macos/dylib/{filename}.dylib"
+    arm64_dylib = Path(f"/opt/homebrew/opt/{formula}/lib/{filename}.dylib")
+    x86_dylib = Path(f"/usr/local/opt/{formula}/lib/{filename}.dylib")
+    output_dylib = Path(f"macos/dylib/{filename}.dylib")
 
     subprocess.run(
         [
@@ -77,8 +76,14 @@ for dylib in HOMEBREW_DYLIBS:
             f"Dylib {filename} is not universal (got {check_arch.stdout})."
         )
 
-    with open(log_file_path, mode="a") as log_file:
-        log_file.write(f"{os.path.basename(arm64_dylib)} (arm64)    {_sha256sum(arm64_dylib)}\n")
-        log_file.write(f"{os.path.basename(x86_dylib)} (x86_64)    {_sha256sum(x86_dylib)}\n")
-        log_file.write(f"{os.path.basename(output_dylib)} (universal2)    {_sha256sum(output_dylib)}\n")
+    with log_file_path.open(mode="a") as log_file:
+        log_file.write(
+            f"{arm64_dylib.name} (arm64)    {_sha256sum(arm64_dylib)}\n"
+        )
+        log_file.write(
+            f"{x86_dylib.name} (x86_64)    {_sha256sum(x86_dylib)}\n"
+        )
+        log_file.write(
+            f"{output_dylib.name} (universal2)    {_sha256sum(output_dylib)}\n"
+        )
         log_file.write("\n")
