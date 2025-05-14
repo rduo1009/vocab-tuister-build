@@ -10,7 +10,7 @@ log_file_path = Path(__file__).parent.parent.parent / "logs" / "macos.log"
 
 # fmt: off
 PYTHON_DYLIBS = ("libpython3.13", "libssl.3", "libcrypto.3", "libncursesw.5")
-HOMEBREW_DYLIBS = ((("gettext", "libintl.8"), ("xz", "liblzma.5"), ("mpdecimal", "libmpdec.4"), ("libb2", "libb2.1"), ("readline", "libreadline.8"), ("lz4", "liblz4.1"), ("sqlite", "libsqlite3.0")))
+HOMEBREW_DYLIBS = ((("gettext", "libintl.8"), ("xz", "liblzma.5"), ("mpdecimal", "libmpdec.4"), ("libb2", "libb2.1"), ("readline", "libreadline.8"), ("sqlite", "libsqlite3.0")))
 # fmt: on
 
 

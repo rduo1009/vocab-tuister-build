@@ -11,7 +11,7 @@ binary.
 lipo -create first.dylib second.dylib -output combined.dylib
 ```
 
-- The lz4 and numpy wheels are created using delocate.
+- The numpy wheels are created using delocate.
 
 ```bash
 delocate-merge first.whl second.whl
