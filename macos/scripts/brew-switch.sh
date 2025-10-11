@@ -82,8 +82,25 @@ function brew-switch {
     fi
   fi
 
-  # install the downloaded formula
-  echo "INFO: Installing ${_formula}@${_version} from local file: $_formula_path"
-  brew install --formula "$_formula_path"
-  brew pin "$_formula"
+  # install the downloaded formula (must be in a tap now)
+  local _tap_user="local"
+  local _tap_repo="temp"
+  local _tap="${_tap_user}/${_tap_repo}"
+
+  # Create a temporary tap if missing
+  if ! brew tap | grep -q "^${_tap}\$"; then
+    echo "INFO: Creating temporary tap ${_tap}"
+    brew tap-new "${_tap}" >/dev/null
+  fi
+
+  # Move formula into that tap
+  local _tap_path
+  _tap_path="$(brew --repo ${_tap})/Formula"
+  mkdir -p "${_tap_path}"
+  cp "${_formula_path}" "${_tap_path}/"
+
+  # Now install via tap
+  echo "INFO: Installing ${_formula}@${_version} from tap ${_tap}"
+  brew install "${_tap}/${_formula}"
+  brew pin "${_formula}"
 }
