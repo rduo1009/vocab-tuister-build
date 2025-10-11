@@ -36,8 +36,7 @@ jobs:
       - name: Install python
         run: |
           source ~/.zshrc
-          brew-switch $BREW_PYTHON_FORMULA $BREW_PYTHON_VERSION
-          brew link --overwrite $BREW_PYTHON_FORMULA
+          brew install $BREW_PYTHON_FORMULA
         shell: zsh {0}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
