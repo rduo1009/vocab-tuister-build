@@ -41,7 +41,7 @@ def _sha256sum(filename: Path):
 
 for extension in STDLIB_EXTENSIONS:
     original_binary = Path(
-        "python-pkg-framework/Versions/Current/lib/python3.13/lib-dynload/"
+        "python-pkg-framework/Versions/Current/lib/python3.14/lib-dynload/"
         f"{extension}.cpython-{PYTHON_VERSION_SSHORT}-darwin.so"
     )
     output_binary = Path(
