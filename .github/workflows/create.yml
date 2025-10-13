@@ -52,8 +52,6 @@ jobs:
           source ~/.zshrc
           brew install libb2 ncurses
           brow install gettext libb2 ncurses xz mpdecimal sqlite
-          pipx install delocate wheel
-          /opt/homebrew/bin/python3 -m pip install python-dotenv --break-system-packages
         shell: zsh {0}
 
       - name: Create build resources
