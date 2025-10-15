@@ -50,7 +50,7 @@ jobs:
       - name: Install deps needed to build resources
         run: |
           source ~/.zshrc
-          brew install gettext
+          brew install gettext xz mpdecimal readline zlib
           brow install gettext xz mpdecimal readline zlib
         shell: zsh {0}
 
