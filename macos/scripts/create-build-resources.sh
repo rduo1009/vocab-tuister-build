@@ -9,8 +9,8 @@ set -e
 
 export $(cat macos/.env | xargs)
 
-rm -rf logs
-mkdir -p logs
+rm -rf logs macos/dylib macos/stdlib macos/wheels
+mkdir -p logs macos/dylib macos/stdlib macos/wheels
 
 curl -L "$PYTHON_PKG_UNIVERSAL_URL" -o python-pkg.pkg
 pkgutil --expand python-pkg.pkg python-expanded-pkg
