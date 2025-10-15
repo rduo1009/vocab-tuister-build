@@ -50,8 +50,8 @@ jobs:
       - name: Install deps needed to build resources
         run: |
           source ~/.zshrc
-          brew install libb2 ncurses
-          brow install gettext libb2 ncurses xz mpdecimal sqlite
+          brew install gettext
+          brow install gettext xz mpdecimal readline zlib
         shell: zsh {0}
 
       - name: Create build resources
