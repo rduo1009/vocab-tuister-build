@@ -14,8 +14,9 @@ HOMEBREW_DYLIBS = (
     ("xz", "liblzma.5"),
     ("mpdecimal", "libmpdec.4"),
     ("readline", "libreadline.8"),
-    ("zlib", "libz.1")
+    ("zlib", "libz.1"),
 )
+
 
 def _sha256sum(filename: Path):
     with filename.open("rb", buffering=0) as f:
