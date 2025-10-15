@@ -16,7 +16,3 @@ lipo -create first.dylib second.dylib -output combined.dylib
 ```bash
 delocate-merge first.whl second.whl
 ```
-
-Despite this, the error
-`58160 WARNING: Ignoring non-existent resource src/_build/macos/dylib/libncursesw.6.dylib, meant to be collected as libncursesw.6.dylib`
-occurs, but this doesn't cause any issues for some reason.
