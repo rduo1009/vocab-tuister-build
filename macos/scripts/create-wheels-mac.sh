@@ -21,7 +21,7 @@ curl -L "$NUMPY_WHEEL_ARM_URL" -O
 x86_64_wheel=$(basename "$NUMPY_WHEEL_X86_URL")
 arm64_wheel=$(basename "$NUMPY_WHEEL_ARM_URL")
 
-pipx run --spec delocate delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
+uvx --from delocate delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
 
 wheels=(macos/wheels/*.whl) 
 for w in $wheels; do
@@ -47,7 +47,7 @@ curl -L "$MARKUPSAFE_WHEEL_ARM_URL" -O
 x86_64_wheel=$(basename "$MARKUPSAFE_WHEEL_X86_URL")
 arm64_wheel=$(basename "$MARKUPSAFE_WHEEL_ARM_URL")
 
-pipx run --spec delocate delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
+uvx --from delocate delocate-merge "$x86_64_wheel" "$arm64_wheel" --wheel-dir macos/wheels
 
 wheels=(macos/wheels/*.whl) 
 for w in $wheels; do
